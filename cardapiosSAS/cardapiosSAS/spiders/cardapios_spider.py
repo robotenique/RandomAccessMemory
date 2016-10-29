@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+
+"""cardapios_spider.py: Very simple spider to crawl through the
+    online menus of the University of São Paulo :D ."""
+
+__author__      = "Juliano Garcia de Oliveira"
+__copyright__   = "Copyright NULL, Planet Earth"
+
 import scrapy
 
 class CardapioSpider(scrapy.Spider):
