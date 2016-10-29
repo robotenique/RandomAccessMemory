@@ -1,3 +1,5 @@
+#ifndef __GRAPHEL_H__
+#define __GRAPHEL_H__
 struct Point {
     double x,y;
     Point(): x(0), y(0){}
@@ -11,8 +13,9 @@ struct Rect {
 
 class GraphicalElement {
 public:
-    virtual ~GraphicalElement ();
+    virtual ~GraphicalElement (){}
     virtual GraphicalElement * clone() const = 0; /* Purely virtual function */
     virtual Rect boundingBox() const = 0;
-    virtual bool has_point(const Point& p) cont = 0;
+    virtual bool has_point(const Point &p) const = 0;
 };
+#endif
