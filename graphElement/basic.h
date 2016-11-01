@@ -15,4 +15,35 @@ public:
     Rect boundingBox() const;
 };
 
+class Group: public GraphicalElement {
+    struct Node {
+        GraphicalElement *c;
+        Node *next;
+    };
+    Node *head;
+public:
+    Group(): head(0){}
+    Group(const Group &other);
+    ~Group();
+    void add(const GraphicalElement &e);
+    GraphicalElement *clone() const {
+        return new Group(*this);
+    }
+    bool has_point(const Point &p);
+    Rect boundingBox() const;
+};
+
+class Segment: public GraphicalElement {
+    Point a,b;
+    double thickness;
+public:
+    Segment(const Point &a, const Point &b, double thickness)
+        :a(a), b(b), thickness(thickness) {}
+    GraphicalElement *clone() const {
+        return new Segment(*this);
+    }
+    bool has_point(const Point &p) const;
+    Rect boundingBox() const;
+};
+
 #endif
