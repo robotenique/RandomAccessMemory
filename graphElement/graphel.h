@@ -16,6 +16,6 @@ public:
     virtual ~GraphicalElement (){}
     virtual GraphicalElement * clone() const = 0; /* Purely virtual function */
     virtual Rect boundingBox() const = 0;
-    virtual bool has_point(const Point &p) const = 0;
+    virtual bool has_point(const Point& p) const = 0;
 };
 #endif

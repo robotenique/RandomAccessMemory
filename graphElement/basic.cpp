@@ -9,21 +9,21 @@ Rect Circle::boundingBox() const {
     return bb;
 }
 
-bool Circle::has_point(const Point &p) const {
+bool Circle::has_point(const Point& p) const {
     double dst2 = sq(p.x - c.x) + sq(p.y - c.y);
     bool hasPtn = sq(radius - thickness) <= dst2;
     hasPtn = hasPtn && dst2 <= sq(radius + thickness);
     return hasPtn;
 }
 
-void Group::add(const GraphicalElement &e) {
+void Group::add(const GraphicalElement& e) {
     Node *c = new Node;
     c->e = e.clone();
     c->next = head;
     head = e;
 }
 
-Group::Group(const Group &other)
+Group::Group(const Group& other)
     :head(0) {
         for (Node *c = other.head; c; c = c->next)
             add(*c->e);
@@ -38,7 +38,7 @@ Group::~Group() {
     }
 }
 
-bool Group::has_point(const Point &p) const {
+bool Group::has_point(const Point& p) const {
     for(Node *c = head; c; c = c->next)
         if(c->e->has_point(p))
             return true;
