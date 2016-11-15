@@ -18,7 +18,7 @@ Personal repository with lots of different projects going on, mainly Python base
 	Bash shell scripts to do mundane routines
 
 
-->Pythos_Data
+->Python_Data
 
 	All sorts of random things in Python
 
