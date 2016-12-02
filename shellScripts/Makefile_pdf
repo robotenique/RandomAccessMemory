@@ -1,0 +1,4 @@
+$ cat >Makefile <<'EOF'
+%.pdf : %.md
+    pandoc -o $@ $<
+EOF
