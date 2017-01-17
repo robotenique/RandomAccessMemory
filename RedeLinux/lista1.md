@@ -44,5 +44,72 @@ date: "26 de Janeiro, 2017"
 
 12.
     a) ``` apt-cache search windows ```
+
     b) ``` apt list --installed ```
-    c) 
+
+    c) Instalando o pacote *gcc-doc* e *gcc-doc-base* junto com suas dependências: ``` apt-get install gcc-doc gcc-doc-base ```
+
+    d) Porque o *apt* tem um *easter egg* quando se digita ```apt-get moo ```, e o *aptitude* não :(
+
+13. O diretório */tmp* armazena arquivos temporários que são usados por programas, muitos desses arquivos são compartilhados através desse diretório. Em várias distribuições de *linux* esse diretório faz parte do *tmpfs*, o que significa que é memória volátil. No Debian o */tmp* não faz parte do *tmpfs*, mas o */dev/shm* sim.
+
+14. Usei a distribuição *puppet linux*. Segue o script:
+```bash
+#!/bin/bash
+DOWNLINK='http://distro.ibiblio.org/puppylinux/puppy-4.3.1/pup-431.iso'
+DOWNPATH='$HOME/Downloads/'
+FILENAME=$(basename "$DOWNLINK")
+echo "==>Linux Image downloader and installer!"
+echo "==> USE AT YOUR OWN RISK! <=="
+echo ""
+sleep 3
+echo "Starting ISO download..."
+wget $DOWNLINK -P $HOME/Downloads
+cd $HOME/Downloads/
+echo ""
+echo "Now, type the device name of the pendrive, ex: sdb"
+sleep 1
+lsblk
+echo "Type the name of your pendrive and press [ENTER]: "
+read dname
+echo "The device selected is $dname. Proceed with script (y / n)? "
+read ans
+if [ $ans = "n" ]
+then
+	exit
+fi
+echo ""
+echo "Unmounting device /dev/$dname..."
+# Not really recommended, but works
+sudo umount /dev/$dname
+echo ""
+echo "Writing iso to device /dev/$dname..."
+sudo dd if=$(pwd)/$FILENAME of=/dev/$dname bs=4M && sync
+echo "Finished writing!"
+```
+15. Para cancelar um *job* de impressão, é necessário saber o *ID* do *job*. Pra isso, se usa o comando *lpstat*, por exemplo: ``` lpstat -d Euclides ```, e então simplesmente usar o comando *cancel* para cancelar o *job* especificado, ```cancel <ID> ```.
+ Para imprimir um arquivo pela linha de comando, na Euclides por exemplo: ``` lp /caminho/arquivo.pdf -d Euclides ```
+
+16. (...)
+
+17. Usando o comando *last* e filtrando algumas coisas (testado na rede linux do IME):
+```bash
+#!/bin/bash
+echo "==> Check if a user is logged on in the LAN "
+echo "Type the username to verify if it's logged on, then press [ENTER]:"
+read user
+ret=$(last -w | grep still | awk '{print $1 }' | grep $user)
+for x in $ret
+do
+	if [ $user = $x ]
+	then
+		echo "YES, the user is logged in!"
+		exit
+	fi
+done
+echo "NO, the user isn't logged in!"
+```
+
+18. a) ```find . -type f | grep --extended-regexp "(.\.c|.\.h)" | xargs cat | wc -l ```
+
+    b) ``` find . -type f | grep --extended-regexp "(.\.sh|.\.h)" | xargs cat | grep -o '\int\b' | wc -l ```
