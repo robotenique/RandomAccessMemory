@@ -39,3 +39,10 @@ date: "26 de Janeiro, 2017"
     c) O primeiro muda apenas adiciona a permissão de execução ao dono do arquivo, enquanto *777* garante total acesso para todos, seja ou não do grupo em questão.
 
 8. Se tivermos acesso à conta *root*, é possível usando o comando *su*. Por exemplo, se eu quiser rodar um *script shell* no usuário *zoao*, eu faço: ````sudo su -c pasta/bot.sh zoao ```, e não preciso logar diretamente no usuário *zoao*.
+
+10. Usando uma ferramenta chamada *crontab*, que permite agendar tarefas para serem executadas em um determinado padrão de horário e/ou data. No caso da questão, teríamos que criar um arquivo de *crontab* e então colocar a seguinte linha no arquivo : ``` 14 3 15 1-12 * <comando> ```
+
+12.
+    a) ``` apt-cache search windows ```
+    b) ``` apt list --installed ```
+    c) 
