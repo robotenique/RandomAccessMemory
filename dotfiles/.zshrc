@@ -101,12 +101,12 @@ alias lock='xscreensaver-command -lock'
 alias sound1='pacmd set-card-profile 1 output:analog-stereo+input:analog-stereo'
 alias nds='desmume --cpu-mode=1 --opengl-2d --3d-engine=2'
 alias opc='nautilus ./'
-alias touch="sudo modprobe -r psmouse && sudo modprobe psmouse proto=imps"
+alias touchh="sudo modprobe -r psmouse && sudo modprobe psmouse proto=imps"
 alias sshime="ssh robotenique@linux.ime.usp.br"
 alias shreload="source ~/.zshrc"
 alias opn="nautilus /opt/lampp/htdocs"
 alias ilinux="cat /etc/*-release"
-
+alias c='tput reset'
 # Easily extract all compressed file types
 extract () {
    if [ -f $1 ] ; then
