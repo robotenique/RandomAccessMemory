@@ -41,6 +41,27 @@ date: "26 de Janeiro, 2017"
 
 10. Usando uma ferramenta chamada *crontab*, que permite agendar tarefas para serem executadas em um determinado padrão de horário e/ou data. No caso da questão, teríamos que criar um arquivo de *crontab* e então colocar a seguinte linha no arquivo : ``` 14 3 15 1-12 * <comando> ```
 
+11. O *script* em questão usa o *curl* para obter a página, compara com a versão baixada anteriormente usando *diff*, e exibe uma notificação através do *notify-send*. O *diff* é exibido no terminal, mas não na notificação pra deixar mais limpo, e a requisição é feita de 5 em 5 segundos. Se quiser apenas a notificação basta colocar o *script* em background.
+```bash
+#!/bin/bash
+echo "==> Check if a website was updated. USAGE: ./checkWebsite.sh  <URL>"
+echo ""
+sudo apt-get install notify-osd libnotify-bin
+curl $1 -L --compressed -s > 00.html
+cp 00.html 01.html
+for (( ; ; )); do
+    echo "Checking change..."
+    mv 01.html 00.html 2> /dev/null
+    curl $1 -L --compressed -s > 01.html
+    CHGD="$(diff 01.html 00.html)"
+    echo $CHGD
+    if [ "0" != "${#CHGD}" ]; then
+        notify-send REPORT "THE WEBSITE AT $url HAS CHANGED!!!"
+    fi
+    sleep 5
+done
+```
+
 12.
     a) ``` apt-cache search windows ```
 
@@ -91,7 +112,7 @@ echo "Finished writing!"
 
 16. (...)
 
-17. Usando o comando *last* e filtrando algumas coisas (testado na rede linux do IME):
+17. Normalmente eu uso o comando *rwho* pra verificar isso, porém não consegui fazer um jeito do *rwho* escrever o nome completo de um usuário (o *rwho* mostra apenas os 8 primeiros caracteres do nome do usuário), então fiz usando o comando *last* e filtrando o nome do usuário da saída:
 ```bash
 #!/bin/bash
 echo "==> Check if a user is logged on in the LAN "
