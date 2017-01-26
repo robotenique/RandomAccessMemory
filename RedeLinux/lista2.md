@@ -80,3 +80,17 @@ print("The user was created. You password is: ", pw)
 11. Sim, através de uma funcionalidade chamada *cgroups*. Com ela é possível configurar limites para o uso de memória RAM, uso de CPU, etc.
 
 ####Links
+1. Os *soft links* são ponteiros para um arquivo. Eles são usados para redirecionar e apontar para um arquivo em outro lugar no disco. Para criar um link simbólico basta usar o comando *ln -s \<nomeArquivoOuPasta\> \<nomeDoLink\>*.
+
+2. A diferença é que o *hard link* sempre aponta para o arquivo enquanto ele existir, não importa se ele foi movido para outro lugar, enquanto o *soft link* não irá apontar mais para o arquivo se ele foi movido após a criação do *link* em questão.
+
+3. a) Não, apenas o ponteiro é removido, o arquivo permanece inalterado.
+
+   b) O padrão do comando *cp* é copiar o arquivo apontado pelo *soft link*, não o *soft link* em si. Para copiar o *soft link* usa-se a opção *-h*.
+
+   c) Por *default* o comando *tar* copia o *soft link*. Para fazer com que copie um arquivo deve ser usado a *flag -h*.
+
+####SSH
+1) Sim, usando uma chave RSA de ssh. Basta rodar o comando *ssh-keygen*, seguir os procedimentos, e quando a chave já estiver sido gerada, basta usar *ssh-copy-id user@dominio*, que a chave será transferida. Assim, é possível logar sem ter que ficar digitando a senha sempre.
+
+2.
