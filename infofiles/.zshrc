@@ -15,6 +15,13 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status ram time)
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \u3A3 %d.%m.%y}"
 
+echo "$(tput setaf 1)__________      ___.           __                $(tput setaf 2).__                      
+$(tput setaf 1)\______   \ ____\_ |__   _____/  |_  ____   $(tput setaf 2)____ |__| ________ __   ____  
+ $(tput setaf 1)|       _//  _ \| __ \ /  _ \   __\/ _$(tput setaf 2)_ \ /    \|  |/ ____/  |  \_/ __ \ 
+ $(tput setaf 1)|    |   (  <_> ) \_\ (  <_> )  | \  $(tput setaf 2)___/|   |  \  < <_|  |  |  /\  ___/ 
+ $(tput setaf 1)|____|_  /\____/|___  /\____/|__|  \\$(tput setaf 2)___  >___|  /__|\__   |____/  \___  >
+        $(tput setaf 1)\/           \/                 $(tput setaf 2)\/     \/       |__|           \/ "
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

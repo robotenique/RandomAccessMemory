@@ -45,7 +45,7 @@ $(tput setaf 1)\______   \ ____\_ |__   _____/  |_  ____   $(tput setaf 2)____ |
         $(tput setaf 1)\/           \/                 $(tput setaf 2)\/     \/       |__|           \/ "
 alias cdw='cd ..'
 alias ls='ls --color=auto'
-alias cls='clear'
+alias cls='tput reset'
 alias grep='grep --color=auto'
 alias netbeans='/usr/local/netbeans-7.4/bin/netbeans'
 alias bd='psql -h data.ime.usp.br -p 23001 -U u7577469 -d bd_7577469'
