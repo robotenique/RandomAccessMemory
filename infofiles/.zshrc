@@ -8,20 +8,21 @@
 # time that oh-my-zsh is loaded.
 ZSH_THEME="powerlevel9k/powerlevel9k"
 POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+POWERLEVEL9K_PROMPT_ON_NEWLINE=false
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon anaconda dir vcs)
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status ram time)
-POWERLEVEL9K_STATUS_VERBOSE=false
+POWERLEVEL9K_STATUS_VERBOSE=true
 POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \u3A3 %d.%m.%y}"
 
-echo "$(tput setaf 1)__________      ___.           __                $(tput setaf 2).__                      
-$(tput setaf 1)\______   \ ____\_ |__   _____/  |_  ____   $(tput setaf 2)____ |__| ________ __   ____  
- $(tput setaf 1)|       _//  _ \| __ \ /  _ \   __\/ _$(tput setaf 2)_ \ /    \|  |/ ____/  |  \_/ __ \ 
- $(tput setaf 1)|    |   (  <_> ) \_\ (  <_> )  | \  $(tput setaf 2)___/|   |  \  < <_|  |  |  /\  ___/ 
- $(tput setaf 1)|____|_  /\____/|___  /\____/|__|  \\$(tput setaf 2)___  >___|  /__|\__   |____/  \___  >
-        $(tput setaf 1)\/           \/                 $(tput setaf 2)\/     \/       |__|           \/ "
 
+echo "$(tput setaf 1)__________      ___.           __                $(tput setaf 14).__                      
+$(tput setaf 1)\______   \ ____\_ |__   _____/  |_  ____   $(tput setaf 14)____ |__| ________ __   ____  
+ $(tput setaf 1)|       _//  _ \| __ \ /  _ \   __\/ _$(tput setaf 14)_ \ /    \|  |/ ____/  |  \_/ __ \ 
+ $(tput setaf 1)|    |   (  <_> ) \_\ (  <_> )  | \  $(tput setaf 14)___/|   |  \  < <_|  |  |  /\  ___/ 
+ $(tput setaf 1)|____|_  /\____/|___  /\____/|__|  \\$(tput setaf 14)___  >___|  /__|\__   |____/  \___  >
+        $(tput setaf 1)\/           \/                 $(tput setaf 14)\/     \/       |__|           \/ "
+alias cdw='cd ..'
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -34,7 +35,7 @@ $(tput setaf 1)\______   \ ____\_ |__   _____/  |_  ____   $(tput setaf 2)____ |
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# export UPDATE_ZSH_DAYS=5
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -69,7 +70,7 @@ plugins=(git per-directory-history)
 
 # User configuration
 
-  export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/juliano/bin"
+  export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/juliano/bin:/home/juliano/.intellij/bin"
   export PATH="/home/juliano/anaconda3/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -103,10 +104,7 @@ alias c='clear'
 alias up='cd ..'
 alias h='cd ~'
 alias disk='cd /'
-alias xs='xscreensaver-demo'
-alias lock='xscreensaver-command -lock'
 alias sound1='pacmd set-card-profile 1 output:analog-stereo+input:analog-stereo'
-alias nds='desmume --cpu-mode=1 --opengl-2d --3d-engine=2'
 alias opc='nautilus ./'
 alias touchh="sudo modprobe -r psmouse && sudo modprobe psmouse proto=imps"
 alias sshime="ssh robotenique@linux.ime.usp.br"
@@ -114,6 +112,9 @@ alias shreload="source ~/.zshrc"
 alias opn="nautilus /opt/lampp/htdocs"
 alias ilinux="cat /etc/*-release"
 alias c='tput reset'
+alias gpublic='git push public'
+alias glpublic='git pull --allow-unrelated-histories public master'
+alias activate='source activate robotenique'
 # Easily extract all compressed file types
 extract () {
    if [ -f $1 ] ; then
@@ -152,3 +153,6 @@ pk () {
         echo "'$1' is not a valid file"
     fi
 }
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
