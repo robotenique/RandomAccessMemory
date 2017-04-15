@@ -1,105 +1,60 @@
-# Path to your oh-my-zsh installation.
-  export ZSH=/home/juliano/.oh-my-zsh
-  export TERM="xterm-256color"
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=false
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon anaconda dir vcs)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status ram time)
-POWERLEVEL9K_STATUS_VERBOSE=true
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \u3A3 %d.%m.%y}"
-
-
-echo "$(tput setaf 1)__________      ___.           __                $(tput setaf 14).__                      
-$(tput setaf 1)\______   \ ____\_ |__   _____/  |_  ____   $(tput setaf 14)____ |__| ________ __   ____  
- $(tput setaf 1)|       _//  _ \| __ \ /  _ \   __\/ _$(tput setaf 14)_ \ /    \|  |/ ____/  |  \_/ __ \ 
- $(tput setaf 1)|    |   (  <_> ) \_\ (  <_> )  | \  $(tput setaf 14)___/|   |  \  < <_|  |  |  /\  ___/ 
- $(tput setaf 1)|____|_  /\____/|___  /\____/|__|  \\$(tput setaf 14)___  >___|  /__|\__   |____/  \___  >
-        $(tput setaf 1)\/           \/                 $(tput setaf 14)\/     \/       |__|           \/ "
-alias cdw='cd ..'
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=5
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git per-directory-history)
-
-# User configuration
-
-  export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/juliano/bin:/home/juliano/.intellij/bin"
-  export PATH="/home/juliano/anaconda3/bin:$PATH"
-# export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Executes commands at the start of an interactive session.
+#
+# Authors:
+#   Sorin Ionescu <sorin.ionescu@gmail.com>
+#
+
+
+prompt_zsh_showStatus () {
+  local color='%F{green}'
+  state=`spotify-cli now-playing`;
+  if [ $state = "Spotify service not found - is it running?" ]; then
+
+  else  	
+    artist=`spotify-cli now-playing | grep "spotify_artist_name" | cut -d'=' -f2`
+    track=`spotify-cli now-playing | grep "spotify_track_name" | cut -d'=' -f2`
+    tLen=${#track}
+    short=${track:0:$tLen}
+    if [ "$tLen" -gt "30" ]; then
+    short=${track:0:30}"(...)\""
+	fi
+    echo -n "%{$color%}\uf1bc%{%F{194}%} $artist - $short ";
+  fi
+}
+
+#POWERLINE
+POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_OS_ICON_FOREGROUND="224"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(anaconda os_icon dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time zsh_showStatus)
+POWERLEVEL9K_TIME_FORMAT=" %D{\uf017 %H:%M}"
+POWERLEVEL9K_TIME_BACKGROUND="17"
+POWERLEVEL9K_TIME_FOREGROUND="191"
+POWERLEVEL9K_ANACONDA_LEFT_DELIMITER="%{%F{20}%}▸%{%F{0}%}"
+POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER="%{%F{20}%}◂"
+POWERLEVEL9K_ANACONDA_BACKGROUND="11"
+POWERLEVEL9K_ANACONDA_FOREGROUND="0"
+POWERLEVEL9K_PYTHON_ICON="%{%F{20}%}\uf201 "
+
+
+
+#POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="%B%F{1}❯%F{3}❯%F{2}❯%f%b"
+
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+# Customize to your needs...
+source ~/.zprezto/modules/per-directory-history/per-directory-history.plugin.zsh
+export TERM="xterm-256color"
+export SUBLIME=subl
+export EDITOR="$SUBLIME --wait"
+export VISUAL=$EDITOR
+export LSCOLORS="exfxcxdxbxegedabagacad"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/juliano/bin:/home/juliano/.intellij/bin"
+export PATH="/home/juliano/anaconda3/bin:$PATH"
 alias c='clear'
 alias up='cd ..'
 alias h='cd ~'
@@ -115,44 +70,76 @@ alias c='tput reset'
 alias gpublic='git push public'
 alias glpublic='git pull --allow-unrelated-histories public master'
 alias activate='source activate robotenique'
-# Easily extract all compressed file types
-extract () {
-   if [ -f $1 ] ; then
-       case $1 in
-           *.tar.bz2)   tar xvjf $1    ;;
-           *.tar.gz)    tar xvzf $1    ;;
-           *.bz2)       bunzip2 $1     ;;
-           *.rar)       unrar x $1     ;;
-           *.gz)        gunzip $1      ;;
-           *.tar)       tar xvf $1     ;;
-           *.tbz2)      tar xvjf $1    ;;
-           *.tgz)       tar xvzf $1    ;;
-           *.zip)       unzip $1       ;;
-           *.Z)         uncompress $1  ;;
-           *.7z)        7z x $1        ;;
-           *)           echo "don't know how to extract '$1'..." ;;
-       esac
-   else
-       echo "'$1' is not a valid file"
-   fi
-}
-
-pk () {
-    if [ $1 ] ; then
-        case $1 in
-            tbz)   	tar cjvf $2.tar.bz2 $2      ;;
-            tgz)   	tar czvf $2.tar.gz  $2   	;;
-            tar)  	tar cpvf $2.tar  $2       ;;
-            bz2)	bzip $2 ;;
-            gz)		gzip -c -9 -n $2 > $2.gz ;;
-            zip)   	zip -r $2.zip $2   ;;
-            7z)    	7z a $2.7z $2    ;;
-            *)     	echo "'$1' cannot be packed via pk()" ;;
-        esac
-    else
-        echo "'$1' is not a valid file"
-    fi
-}
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+alias g="git"
+alias ga="git add"
+alias gaa="git add --all"
+alias gapa="git add --patch"
+alias gb="git branch"
+alias gba="git branch -a"
+alias gbr="git branch --remote"
+alias gc="git commit -v"
+alias gc!="git commit -v --amend"
+alias gca="git commit -v -a"
+alias gca!="git commit -v -a --amend"
+alias gcl="git config --list"
+alias gclean="git clean -fd"
+alias gpristine="git reset --hard && git clean -dfx"
+alias gcm="git checkout master"
+alias gcmsg="git commit -m"
+alias gco="git checkout"
+alias gcount="git shortlog -sn"
+alias gcp="git cherry-pick"
+alias gcs="git commit -S"
+alias gd="git diff"
+alias gdca="git diff --cached"
+alias gdt="git diff-tree --no-commit-id --name-only -r"
+alias gdt="git difftool"
+alias gfa="git fetch --all --prune"
+alias gg="git gui citool"
+alias gga="git gui citool --amend"
+alias gignore="git update-index --assume-unchanged"
+alias git-svn-dcommit-push="git svn dcommit && git push github master:svntrunk"
+alias gk="gitk --all --branches"
+alias gl="git pull"
+alias glg="git log --stat --max-count = 10"
+alias glgg="git log --graph --max-count = 10"
+alias glgga="git log --graph --decorate --all"
+alias glog="git log --oneline --decorate --color --graph"
+alias glp="_git_log_prettily (git log --pretty=$1)"
+alias gm="git merge"
+alias gmt="git mergetool --no-prompt"
+alias gp="git push"
+alias gpoat="git push origin --all && git push origin --tags"
+alias gr="git remote"
+alias grba="git rebase --abort"
+alias grbc="git rebase --continue"
+alias grbs="git rebase --skip"
+alias grbi="git rebase -i"
+alias grh="git reset HEAD"
+alias grhh="git reset HEAD --hard"
+alias grmv="git remote rename"
+alias grrm="git remote remove"
+alias grset="git remote set-url"
+alias grup="git remote update"
+alias grv="git remote -v"
+alias gsd="git svn dcommit"
+alias gsps="git show --pretty = short --show-signature"
+alias gsr="git svn rebase"
+alias gss="git status -s"
+alias gst="git status"
+alias gsta="git stash save"
+alias gstaa="git stash apply"
+alias gstd="git stash drop"
+alias gstl="git stash list"
+alias gstp="git stash pop"
+alias gsts="git stash show --text"
+alias gts="git tag -s"
+alias gunignore="git update-index --no-assume-unchanged"
+alias gunwip="git log -n 1 | grep -q -c "--wip--" && git reset HEAD~1"
+alias gup="git pull --rebase"
+alias gvt="git verify-tag"
+alias gwch="git whatchanged -p --abbrev-commit --pretty = medium"
+alias h="cd ~"
 export PATH="$PATH:$HOME/.rvm/bin"
+# OPAM configuration
+. /home/juliano/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
