@@ -7,25 +7,40 @@ __author__      = "Juliano Garcia de Oliveira"
 __copyright__   = "Copyright NULL, Planet Earth"
 
 import scrapy
+from scrapy_splash import SplashRequest
+# Color constants
+W  = '\033[0m'  # white (normal)
+R  = '\033[31m' # red
+G  = '\033[32m' # green
+O  = '\033[33m' # orange
+B  = '\033[34m' # blue
+P  = '\033[35m' # purple
+
 
 class CardapioSpider(scrapy.Spider):
     # Spider Identifier
     name = "cardapiosSAS"
     allowed_domains = ["https://uspdigital.usp.br/"]
-    start_urls = ['http://localhost:8050/render.html?url=https://uspdigital.usp.br/rucard/Jsp/cardapioSAS.jsp?codrtn=8&timeout=10&wait=0.5']
+    start_urls = [f"https://uspdigital.usp.br/rucard/Jsp/cardapioSAS.jsp?codrtn={i}"
+                  for i in range(7, 10)]
 
     def start_requests(self):
         # Pass request through splash
         for url in self.start_urls:
-            yield scrapy.Request(url=url, callback = self.parse)
+            yield SplashRequest(url=url, callback=self.parse,
+            args={
+            'wait': 5,})
 
     # Process our response to the desired format
     def parse(self, response):
         # Symbol Table with key - value
-        dictRest = {'8':'Física', '9':'Química'}
+        dictRest = {"7":"Prefeitura" , "8":"Física", "9":"Química"}
         # Modify this parse method
-        page = dictRest[response.url.split("/")[-1][-21]]
-        filename = 'c_%s.html' % page
-        with open(filename, mode='wb') as f:
+        print(P)
+        print(response.body)
+        print(W)
+        page = dictRest[response.url.split("/")[-1][-1]]
+        filename = "c_%s.html" % page
+        with open(filename, mode="wb") as f:
             f.write(response.body)
-        self.log('Saved dump file %s' % filename)
+        self.log("Saved dump file %s" % filename)
