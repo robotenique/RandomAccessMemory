@@ -1,17 +1,13 @@
 #
 # Executes commands at the start of an interactive session.
 #
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 
 prompt_zsh_showStatus () {
   local color='%F{green}'
   state=`spotify-cli now-playing`;
   if [ $state = "Spotify service not found - is it running?" ]; then
 
-  else  	
+  else	
     artist=`spotify-cli now-playing | grep "spotify_artist_name" | cut -d'=' -f2`
     track=`spotify-cli now-playing | grep "spotify_track_name" | cut -d'=' -f2`
     tLen=${#track}
@@ -30,13 +26,31 @@ POWERLEVEL9K_OS_ICON_FOREGROUND="224"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(anaconda os_icon dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time zsh_showStatus)
 POWERLEVEL9K_TIME_FORMAT=" %D{\uf017 %H:%M}"
-POWERLEVEL9K_TIME_BACKGROUND="17"
+POWERLEVEL9K_TIME_BACKGROUND="16"
 POWERLEVEL9K_TIME_FOREGROUND="191"
 POWERLEVEL9K_ANACONDA_LEFT_DELIMITER="%{%F{20}%}▸%{%F{0}%}"
 POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER="%{%F{20}%}◂"
 POWERLEVEL9K_ANACONDA_BACKGROUND="11"
 POWERLEVEL9K_ANACONDA_FOREGROUND="0"
 POWERLEVEL9K_PYTHON_ICON="%{%F{20}%}\uf201 "
+
+# 'dir colors'
+POWERLEVEL9K_DIR_HOME_BACKGROUND='91'
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='53'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='53'
+POWERLEVEL9K_DIR_HOME_FOREGROUND='231'
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='231'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='231'
+
+# 'git hub colors'
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='236'
+POWERLEVEL9K_VCS_CLEAN_BACKGROUND='119'
+POWERLEVEL9K_VCS_CLEAN_FOREGROUND='232'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='214'
+POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='232'
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='167'
+POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='232'
+
 
 
 
@@ -63,6 +77,7 @@ alias sound1='pacmd set-card-profile 1 output:analog-stereo+input:analog-stereo'
 alias opc='nautilus ./'
 alias touchh="sudo modprobe -r psmouse && sudo modprobe psmouse proto=imps"
 alias sshime="ssh robotenique@linux.ime.usp.br"
+alias sshlin="ssh robotenique@python"
 alias shreload="source ~/.zshrc"
 alias opn="nautilus /opt/lampp/htdocs"
 alias ilinux="cat /etc/*-release"
@@ -140,6 +155,7 @@ alias gup="git pull --rebase"
 alias gvt="git verify-tag"
 alias gwch="git whatchanged -p --abbrev-commit --pretty = medium"
 alias h="cd ~"
+alias gtmp="git add . && git commit -m 'updTmp $RANDOM' && git push"
 export PATH="$PATH:$HOME/.rvm/bin"
 # OPAM configuration
 . /home/juliano/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
