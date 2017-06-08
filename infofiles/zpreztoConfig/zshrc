@@ -19,20 +19,25 @@ prompt_zsh_showStatus () {
   fi
 }
 
+prompt_zsh_debianIcon () {
+	echo -n "%F{224}%}\uf302"
+}
 #POWERLINE
 POWERLEVEL9K_MODE='awesome-fontconfig'
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_OS_ICON_FOREGROUND="224"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(anaconda os_icon dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon anaconda dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time zsh_showStatus)
 POWERLEVEL9K_TIME_FORMAT=" %D{\uf017 %H:%M}"
 POWERLEVEL9K_TIME_BACKGROUND="88"
 POWERLEVEL9K_TIME_FOREGROUND="191"
-POWERLEVEL9K_ANACONDA_LEFT_DELIMITER="%{%F{20}%}▸%{%F{0}%}"
-POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER="%{%F{20}%}◂"
+POWERLEVEL9K_LINUX_ICON="\uf302"
+
+# 'anaconda and python info'
 POWERLEVEL9K_ANACONDA_BACKGROUND="11"
 POWERLEVEL9K_ANACONDA_FOREGROUND="0"
-POWERLEVEL9K_PYTHON_ICON="%{%F{20}%}\uf201 "
+POWERLEVEL9K_ANACONDA_LEFT_DELIMITER=""
+POWERLEVEL9K_ANACONDA_RIGHT_DELIMITER=""
+POWERLEVEL9K_PYTHON_ICON="%{%F{20}%}\ue606 "
 
 
 # 'dir colors'
@@ -52,7 +57,10 @@ POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='232'
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='167'
 POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='232'
 
-#POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="%B%F{1}❯%F{3}❯%F{2}❯%f%b"
+POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR="\uE0B0"
+
+
+
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -156,6 +164,22 @@ alias gwch="git whatchanged -p --abbrev-commit --pretty = medium"
 alias h="cd ~"
 alias gtmp="git add . && git commit -m 'updTmp $RANDOM' && git push"
 alias pprog="echo -n \"Signed-off-by: Juliano Garcia <julianogarcia_1997@hotmail.com>\nSigned-off-by: Bruno Scholl <bruno.scholl@usp.br>\n\""
+LS_COLORS=$(ls_colors_generator)
+
+run_ls() {
+	ls-i --color=auto -w $(tput cols) "$@"
+}
+
+run_dir() {
+	dir-i --color=auto -w $(tput cols) "$@"
+}
+
+run_vdir() {
+	vdir-i --color=auto -w $(tput cols) "$@"
+}
+alias ls="run_ls"
+alias dir="run_dir"
+alias vdir="run_vdir"
 
 # OPAM configuration
 . /home/juliano/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
@@ -167,4 +191,3 @@ export PATH="$PATH:/usr/share/texlive"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$HOME/.rvm/scripts/rvm"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
