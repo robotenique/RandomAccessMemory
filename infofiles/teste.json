@@ -20,7 +20,7 @@
           "slots": 16, 
           "uid": 11
         }, 
-        "free_bikes": 2, 
+        "free_bikes": 0, 
         "id": "f783d903f92a164bd3a6db3f4c32a333", 
         "latitude": -23.555116, 
         "longitude": -46.707991, 
@@ -34,7 +34,7 @@
           "slots": 8, 
           "uid": 7
         }, 
-        "free_bikes": 3, 
+        "free_bikes": 0, 
         "id": "e8bf71e2c22c04b77a244bf10cc57d00", 
         "latitude": -23.573231, 
         "longitude": -46.660441, 
@@ -48,7 +48,7 @@
           "slots": 12, 
           "uid": 9
         }, 
-        "free_bikes": 1, 
+        "free_bikes": 0, 
         "id": "17bd0aa2c441688fa27f293f6edadacb", 
         "latitude": -23.570832, 
         "longitude": -46.670955, 
@@ -62,7 +62,7 @@
           "slots": 16, 
           "uid": 14
         }, 
-        "free_bikes": 3, 
+        "free_bikes": 0, 
         "id": "aa15e9fac0391976920464cf24e5fa9f", 
         "latitude": -23.605373, 
         "longitude": -46.694637, 
@@ -76,7 +76,7 @@
           "slots": 12, 
           "uid": 15
         }, 
-        "free_bikes": 1, 
+        "free_bikes": 0, 
         "id": "d18218272b29e66a67322d945bb6aee0", 
         "latitude": -23.598245, 
         "longitude": -46.676007, 
@@ -104,7 +104,7 @@
           "slots": 12, 
           "uid": 17
         }, 
-        "free_bikes": 3, 
+        "free_bikes": 0, 
         "id": "6d984b688ffc2b1a662eba08d4aebab4", 
         "latitude": -23.583738, 
         "longitude": -46.683822, 
@@ -118,7 +118,7 @@
           "slots": 8, 
           "uid": 19
         }, 
-        "free_bikes": 2, 
+        "free_bikes": 0, 
         "id": "11edcdc74f826738908f3a61432f9e99", 
         "latitude": -23.574829, 
         "longitude": -46.678271, 
@@ -132,7 +132,7 @@
           "slots": 8, 
           "uid": 2
         }, 
-        "free_bikes": 1, 
+        "free_bikes": 0, 
         "id": "774466d26209a6a0497db2c273999bc8", 
         "latitude": -23.5586739, 
         "longitude": -46.66238, 
@@ -174,7 +174,7 @@
           "slots": 12, 
           "uid": 12
         }, 
-        "free_bikes": 1, 
+        "free_bikes": 0, 
         "id": "6493c9b991c763bcdfd6e81710802b6a", 
         "latitude": -23.554939, 
         "longitude": -46.693526, 
